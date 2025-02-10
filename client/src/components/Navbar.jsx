@@ -55,7 +55,7 @@ const Navbar = () => {
           transition={{ delay: 0.2 }}
         >
           <img
-            src="/portfoliologo.png"
+            src="/Portfoliologo.png"
             alt="Logo"
             className="w-12 h-12 object-cover"
           />
