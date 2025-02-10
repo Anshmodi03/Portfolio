@@ -25,7 +25,10 @@ const Contact = () => {
     setIsSending(true);
     try {
       // Use the full URL to your backend API endpoint.
-      await axios.post("http://localhost:5000/api/contact", formData);
+      await axios.post(
+        "https://portfolio-mfnq.onrender.com/api/contact",
+        formData
+      );
       setFormData({ name: "", email: "", message: "" });
       // Show success toast in bottom-right corner.
       toast.success("Message Sent! Thank you for contacting us.", {
