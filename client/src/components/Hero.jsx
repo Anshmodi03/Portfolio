@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy, Suspense, startTransition } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { motion, useAnimation } from "framer-motion";
 import {
   Github,
@@ -14,18 +14,9 @@ import {
 // Dynamically import components for code splitting
 const GradientText = lazy(() => import("./GradientText"));
 const RotatingText = lazy(() => import("./RotatingText"));
-const GridDistortion = lazy(() => import("./GridDistortion"));
 
 const Hero = () => {
-  // Use startTransition to ensure this update is treated as low priority
-  const [mounted, setMounted] = useState(false);
   const controls = useAnimation();
-
-  useEffect(() => {
-    startTransition(() => {
-      setMounted(true);
-    });
-  }, []);
 
   useEffect(() => {
     controls.start({ opacity: 1, y: 0 });
@@ -57,27 +48,14 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen overflow-hidden bg-transparent snap-start">
-      {/* Animated Background */}
-      <div className="absolute inset-0 z-0">
-        <Suspense fallback={<div>Loading background...</div>}>
-          {mounted && (
-            <GridDistortion
-              imageSrc="/Landingpage.png"
-              grid={20}
-              mouse={0.4}
-              strength={0.25}
-              relaxation={0.9}
-              className="w-full h-full opacity-90"
-            />
-          )}
-        </Suspense>
-      </div>
+      {/* Gradient Background */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#FA4D56] to-[#8A3FFC]" />
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/80 via-[#0a0a0a]/80 to-[#0a0a0a]/80 backdrop-blur-[1px]" />
 
       {/* Subtle Animated Particles */}
-      <div className="absolute inset-0 z-10">
+      <div className="absolute inset-0 z hers-10">
         <div className="relative w-full h-full">
           {[...Array(50)].map((_, i) => (
             <motion.div
@@ -119,7 +97,7 @@ const Hero = () => {
                 transition={{ duration: 0.6 }}
               >
                 Hi, I'm{" "}
-                <Suspense fallback={<span>Loading...</span>}>
+                <Suspense fallback={<span>Ansh Modi</span>}>
                   <GradientText
                     colors={[
                       "#40ffaa",
@@ -142,9 +120,11 @@ const Hero = () => {
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
                 I develop Full Stack Web Applications using{" "}
-                <GradientText className="text-2xl sm:text-2xl md:text-3xl lg:text-5xl font-extrabold mt-2 tracking-tight">
-                  MERN Stack
-                </GradientText>
+                <Suspense fallback={<span>MERN Stack</span>}>
+                  <GradientText className="text-2xl sm:text-2xl md:text-3xl lg:text-5xl font-extrabold mt-2 tracking-tight">
+                    MERN Stack
+                  </GradientText>
+                </Suspense>
               </motion.p>
 
               {/* Rotating Text */}
