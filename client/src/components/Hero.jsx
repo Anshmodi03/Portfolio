@@ -254,7 +254,7 @@ const Hero = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-[260px] md:h-[260px] rounded-full bg-gray-500 overflow-hidden shadow-2xl">
                   <img
-                    src="/profile.png"
+                    src="/profileimage.jpg"
                     alt="Ansh Modi"
                     className="w-full h-full object-cover"
                   />

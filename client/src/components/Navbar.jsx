@@ -1,4 +1,3 @@
-// Navbar.jsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -8,6 +7,7 @@ const navItems = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  { name: "Experience", href: "#experience" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -15,20 +15,17 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Change navbar background when scrolling past 50px
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Variants for the underline animation on nav items
   const underlineVariants = {
     initial: { scaleX: 0 },
     hover: { scaleX: 1 },
   };
 
-  // Variants for mobile menu slide animation
   const mobileMenuVariants = {
     hidden: { x: "100%" },
     visible: { x: 0 },
@@ -47,7 +44,6 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
     >
       <nav className="container mx-auto px-4 py-3 b flex items-center justify-between">
-        {/* Logo and Brand */}
         <motion.div
           className="flex items-center space-x-2"
           initial={{ opacity: 0 }}
@@ -60,8 +56,6 @@ const Navbar = () => {
             className="w-12 h-12 object-cover"
           />
         </motion.div>
-
-        {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8">
           {navItems.map((item) => (
             <motion.a
@@ -81,8 +75,6 @@ const Navbar = () => {
             </motion.a>
           ))}
         </div>
-
-        {/* Mobile Menu Toggle */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -93,8 +85,6 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -103,13 +93,10 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            {/* Semi-transparent backdrop */}
             <div
               className="absolute inset-0 bg-black opacity-50"
               onClick={() => setIsOpen(false)}
             />
-
-            {/* Mobile Menu Panel */}
             <motion.div
               className="absolute top-0 right-0 w-72 h-full bg-black/90 shadow-lg p-6"
               variants={mobileMenuVariants}

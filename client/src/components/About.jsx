@@ -27,7 +27,7 @@ const timelineData = [
     date: "2025 - 2025",
     title: "Full Stack Intern",
     company: "T5 TFI Company",
-    description: "Worker  as a full stack lead inter at T5 TFI Company.",
+    description: "Workered  as a full stack lead inter at T5 TFI Company.",
     logo: "/T5.png", // Update the path as needed
   },
 ];
